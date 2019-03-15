@@ -1,0 +1,28 @@
+Serverlet简单介绍：
+
+Servlet(Server Applet)，全称Java Servlet。
+是用Java编写的server端程序。其主要功能在于交互式地浏览和改动数据，生成动态Web内容。
+狭义的Servlet是指 Java语言实现的一个接口，广义的Servlet是指不论什么实现了这个Servlet接口的类，普通情况下，人们将Servlet理解为后者。
+
+Serverlet的执行机制：
+
+Servlet的主要功能在于交互式地浏览和改动数据，生成动态Web内容。这个过程为：
+1、client发送请求至server端；
+2、server将请求信息发送至Servlet；
+3、Servlet生成响应内容并将其传给Server。响应内容动态生成，通常取决于client的请求；
+4、server将响应返回给client ；
+
+
+Serverlet的生命周期：
+
+1、Server创建一个Servlet的实例，也就是调用了init（）；
+2、一个client的请求到达Server；
+3、Server将请求发送给Serverlet；
+4、Serverlet生成对请求的响应；
+5、Server激活Servlet的service()方法，传递请求和响应对象作为參数；
+a、service()方法获得关于响应对象的信息，处理请求，訪问其它资源，获得须要的信息；
+b、service()方法使用响应对象的方法，将响应传回Server，终于到达client。
+   service()方法可能激活其它方法以处理请求，如doGet()或doPost()或程序猿自己开发的新的方法；
+c、对于很多其它的client请求，Server创建新的请求和响应对象，仍然激活此Servlet的service()方法，将这两个对象作为參数传递给它。
+   如此重复以上的循环，但无需再次调用init()方法。一般Servlet仅仅初始化一次,当Server不再须要Servlet时(一般当Server关闭时)，
+   Server调用Servlet的Destroy()方法。
