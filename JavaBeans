@@ -1,0 +1,80 @@
+JavaBeans的介绍与使用 
+![image](C:\Users\Public\Pictures\NVIDIA Corporation\3D Vision Experience\3D Vision preview pack 1)
+![image](https://github.com/panacena/mengqu/blob/master/readme/Screenshot_2016-07-10-22-17- 15_zkk.com.mengqu.png)
+简介
+Javabeans就是符合某种特定的规范的Java类。使用Javabeans的好处是解决代码重复编写，功能区分明确，提高了代码的可维护性。
+就是一个普通的java类，但符合某种特定规范。
+遵循某种设计原则
+就是常见的实体类感觉
+
+例子：
+ JSP动作
+　　JSP动作元素为请求处理阶段提供信息。动作元素遵循XML元素的语法，有一个包含元素名的开始标签，可以有属性，可选内容，与开始标签匹配的结束标签。
+ 
+包含以下几类，第一类的三个标签，重点！
+<jsp:userBean>
+<jsp:setProperty>
+<jsp:getProperty>
+
+ 
+javabeans通常在jsp页面中使用。
+两种方式使用javabeans
+
+第一种方式
+ 
+在src目录中创建好javabeans类后，然后在jsp页面中，
+
+导入类
+<%@ page import=“User类所在的包名”%>
+ 导入包后，在html标签中加入以下：
+
+ 
+和普通的创建一个java类没有任何区别。
+第二种创建javabeans方法
+　在JSP页面中通常使用JSP动作标签来使用javabean
+useBeans动作
+setProperty动作
+getProperty动作
+ 
+ <jsp:useBeans>
+作用：在jsp页面中实例化或者在指定范围内使用javabean
+1
+<jsp:useBean id=" " class="java类名" scope=”作用范围“ />
+这样就不需要导入包，然后创建对应的实例对象，而是直接向下面这样使用
+
+ 运行后，
+
+因为我们没有初始化，所以都为null
+那么怎么初始化呢，使用setProperty
+ 
+<jsp:setProperty>
+作用：给已经实例化的Javabean对象的属性赋值，一共有四种形式。
+
+ 
+第一种方式，根据表单匹配所有属性
+这里的name就是javabeans的id，用*号是根据表单来进行匹配的
+
+ 
+也就是说用户当时填写表单的时候，比如填写的username栏为wu，那么就会自动对应到javabeans类中的username属性。
+属性部分匹配的时候用第二种方法
+
+这时候只匹配了username，而没有匹配password
+
+第三种方式 手动赋值，跟表单填写了啥没有关系。
+
+第四种 就不介绍了，感觉用不上。
+getProperty
+作用：获取指定Javabean对象的属性值。
+
+用了getProperty就不需要用下面这种方法来获取属性值了
+
+ 使用getProperty获取属性：
+
+
+ 
+ javabeans四个作用域范围
+
+......
+ 
+
+没有javabeans的话jsp页面直接和数据层进行交互，这样会使得代码的可维护性变很差，而且在jsp中出现大量的业务逻辑代码是很不好的。
